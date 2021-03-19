@@ -178,7 +178,7 @@ namespace embot::app::skeleton::os::evthreadcan {
             {
                 embot::hw::can::put(embot::hw::CAN::one, {outframes[i].id, outframes[i].size, outframes[i].data}); 
 								embot::hw::can::transmit(embot::hw::CAN::one);
-								embot::hw::sys::delay(100);
+								embot::hw::sys::delay(embot::core::time1microsec * 500);
             }
         } 
 
