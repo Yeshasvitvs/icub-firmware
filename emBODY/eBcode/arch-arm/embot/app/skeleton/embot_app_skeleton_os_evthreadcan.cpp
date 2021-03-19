@@ -22,6 +22,7 @@
 #include "embot_core.h"
 #include "embot_os_Thread.h"
 #include "embot_hw_can.h"
+#include "embot_hw_sys.h"
 #include <vector>
 #include "embot_core_binary.h"
 
@@ -175,10 +176,10 @@ namespace embot::app::skeleton::os::evthreadcan {
         {
             for(std::uint8_t i=0; i<num; i++)
             {
-                embot::hw::can::put(embot::hw::CAN::one, {outframes[i].id, outframes[i].size, outframes[i].data});                                       
+                embot::hw::can::put(embot::hw::CAN::one, {outframes[i].id, outframes[i].size, outframes[i].data}); 
+								embot::hw::can::transmit(embot::hw::CAN::one);
+								embot::hw::sys::delay(100);
             }
-
-            embot::hw::can::transmit(embot::hw::CAN::one);  
         } 
 
     }
